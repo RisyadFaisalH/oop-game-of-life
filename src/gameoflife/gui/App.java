@@ -82,9 +82,13 @@ public class App extends JFrame implements Runnable {
         future = executorService.scheduleAtFixedRate(() -> {
             ArrayList<Cell> changedCells = game.evolve();
             boardPanel.repaintGrid(changedCells);
-            numGeneration += 1;
-            generationLabel.setText(String.format("Generation: %d", numGeneration));
-        }, 0, 300, TimeUnit.MILLISECONDS);
+            if (changedCells.size() == 0) {
+                pause();
+            } else {
+                numGeneration += 1;
+                generationLabel.setText(String.format("Generation: %d", numGeneration));
+            }
+        }, 0, 50, TimeUnit.MILLISECONDS);
     }
 
     private void pause() {
