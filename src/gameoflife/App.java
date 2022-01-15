@@ -17,11 +17,11 @@ public class App extends JFrame implements Runnable {
     private Future<?> future;
     private final ScheduledExecutorService executorService = Executors.newSingleThreadScheduledExecutor();
 
-    final int width = 800;
-    final int height = 800;
+    final int width = 500;
+    final int height = 500;
 
-    final int rows = 40;
-    final int cols = 40;
+    final int rows = 20;
+    final int cols = 20;
 
     BoardPanel boardPanel;
     Game game;
@@ -60,7 +60,7 @@ public class App extends JFrame implements Runnable {
         future = executorService.scheduleAtFixedRate(() -> {
             ArrayList<Cell> changedCells = game.evolve();
             boardPanel.repaintGrid(changedCells);
-        }, 1, 1, TimeUnit.SECONDS);
+        }, 300, 300, TimeUnit.MILLISECONDS);
     }
     
 
