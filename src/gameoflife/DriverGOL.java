@@ -5,6 +5,8 @@
  */
 package gameoflife;
 
+import gameoflife.gui.App;
+
 import javax.swing.*;
 
 public class DriverGOL {

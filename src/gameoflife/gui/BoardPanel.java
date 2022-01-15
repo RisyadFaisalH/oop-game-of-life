@@ -1,4 +1,7 @@
-package gameoflife;
+package gameoflife.gui;
+
+import gameoflife.core.Cell;
+import gameoflife.core.Point;
 
 import javax.swing.*;
 import java.awt.*;
@@ -89,7 +92,7 @@ public class BoardPanel extends JPanel{
             public void mouseReleased(MouseEvent e) {
                 if(isEnabled()) {
                     if (e.isPopupTrigger()) {
-                        PatternMenu menu = new PatternMenu(cellPanel, x, y);
+                        PatternMenu menu = new PatternMenu(cellPanel, x, y, rows, cols);
                         menu.show(e.getComponent(), e.getX(), e.getY());
                     } else {
                         handleSingleClick(cellPanel[x][y]);

@@ -3,13 +3,13 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package gameoflife;
+package gameoflife.core;
 
 /**
  *
  * @author Hp
  */
-public class Cell extends Point implements CellBehaviour{
+public class Cell extends Point implements CellBehaviour {
     private State state;
     private int neighbor;
     

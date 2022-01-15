@@ -1,4 +1,7 @@
-package gameoflife;
+package gameoflife.gui;
+
+import gameoflife.core.CellBehaviour;
+import gameoflife.core.State;
 
 import javax.swing.*;
 import java.awt.*;

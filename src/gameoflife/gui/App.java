@@ -3,7 +3,11 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package gameoflife;
+package gameoflife.gui;
+
+import gameoflife.core.Board;
+import gameoflife.core.Cell;
+import gameoflife.core.Game;
 
 import javax.swing.*;
 import java.awt.*;
@@ -20,8 +24,8 @@ public class App extends JFrame implements Runnable {
     private Future<?> future;
     private final ScheduledExecutorService executorService = Executors.newSingleThreadScheduledExecutor();
 
-    private final int rows = 20;
-    private final int cols = 20;
+    private final int rows = 40;
+    private final int cols = 40;
 
     BoardPanel boardPanel;
 
@@ -32,8 +36,8 @@ public class App extends JFrame implements Runnable {
     }
     
     public void run(){
-        int width = 500;
-        int height = 500;
+        int width = 800;
+        int height = 800;
 
         frame = new JFrame("Game of Life");
         frame.getContentPane().setBackground(Color.MAGENTA);
