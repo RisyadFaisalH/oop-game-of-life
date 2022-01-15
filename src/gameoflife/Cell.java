@@ -9,7 +9,7 @@ package gameoflife;
  *
  * @author Hp
  */
-public class Cell extends Point{
+public class Cell extends Point implements CellBehaviour{
     private State state;
     private int neighbor;
     

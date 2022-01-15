@@ -12,30 +12,74 @@ import java.util.ArrayList;
  */
 public class Board {
     
-//    private Cell[] cells;
-    
-    
-    public Board() {
-    
+    private Cell[][] cells;
+
+    private final Point[] moves = {
+            new Point(0, 1),
+            new Point(1, 1),
+            new Point(1, 0),
+            new Point(1, -1),
+            new Point(0, -1),
+            new Point(-1, 1),
+            new Point(-1, 0),
+            new Point(-1, -1)
+    };
+
+    private final int rows;
+    private final int cols;
+
+    public Board(int x, int y) {
+        this.rows = x;
+        this.cols = y;
+        this.cells = new Cell[x][y];
+
+        for (int i = 0; i < x; i++) {
+            for (int j = 0; j < y; j++) {
+                this.cells[i][j] = new Cell(i, j);
+            }
+        }
     }
     
     public Board(int x, int y, ArrayList<Point> aliveCells) {
-        
+        this.rows = x;
+        this.cols = y;
+
+        for (Point aliveCell: aliveCells) {
+            populate(aliveCell.getX(), aliveCell.getY());
+        }
     }
     
     public void info() {
-        
+
     }
     
-    public void populate() {
-        
+    public void populate(int x, int y) {
+        if(cells[x][y].isAlive()) return;
+
+        cells[x][y].revive();
+        for (Point move: moves) {
+            cells[(move.getX() + this.rows) % this.rows][(move.getY() + this.cols) % this.cols].addNeigbor();
+        }
     }
     
-    public void unpopulate() {
-        
+    public void unpopulate(int x, int y) {
+        if(!cells[x][y].isAlive()) return;
+
+        cells[x][y].kill();
+        for (Point move: moves) {
+            cells[(move.getX() + this.rows) % this.rows][(move.getY() + this.cols) % this.cols].subtractNeighbor();
+        }
     }
     
-//    public Cell getCell() {
-//        return null;
-//    }
+    public Cell getCell(int x, int y) {
+        return cells[x][y];
+    }
+
+    public int getRows() {
+        return rows;
+    }
+
+    public int getCols() {
+        return cols;
+    }
 }

@@ -37,10 +37,20 @@ public class BoardPanel extends JPanel{
                 add(cellPanel[i][j]);
             }
         }
+
+        setBackground(Color.GRAY);
+        setVisible(true);
     }
 
-    public void repaintGrid() {
-
+    public void repaintGrid(ArrayList<Cell> changedCells) {
+        for (Cell changedCell: changedCells) {
+            if (changedCell.isAlive()) {
+                cellPanel[changedCell.getX()][changedCell.getY()].revive();
+            } else {
+                cellPanel[changedCell.getX()][changedCell.getY()].kill();
+            }
+        }
+        repaint();
     }
 
     public ArrayList<Point> getAliveCells() {

@@ -4,22 +4,48 @@ package gameoflife;/*
  * and open the template in the editor.
  */
 
+import java.util.ArrayList;
+
 /**
  *
  * @author milha
  */
 public class Game {
-    private final Board board;
-    
+    private Board board;
+
     public Game(Board board) {
         this.board = board;
     }
     
-    public void evolve() {
-        
+    public ArrayList<Cell> evolve() {
+        ArrayList<Cell> changedCell = new ArrayList<>();
+        Board nextBoard = new Board(board.getRows(), board.getCols());
+
+        for (int i = 0; i < board.getRows(); i++) {
+            for (int j = 0; j < board.getCols(); j++) {
+                if (rules(board.getCell(i, j))) {
+                    nextBoard.populate(i, j);
+                } else {
+                    nextBoard.unpopulate(i, j);
+                }
+
+                if (board.getCell(i, j).getState() != nextBoard.getCell(i, j).getState()) {
+                    changedCell.add(nextBoard.getCell(i, j));
+                }
+            }
+        }
+
+        board = nextBoard;
+
+        return changedCell;
     }
     
-    public boolean rules() {
-        return false;
+    public boolean rules(Cell cell) {
+        return (cell.getNeighbor() == 3  && !cell.isAlive())
+                || (cell.isAlive() && cell.getNeighbor() >= 2 && cell.getNeighbor() <= 3);
+    }
+
+    public Board getBoard() {
+        return board;
     }
 }

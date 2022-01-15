@@ -1,6 +1,7 @@
 package gameoflife;
 
 import javax.swing.*;
+import java.awt.*;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -14,28 +15,26 @@ import javax.swing.*;
  */
 public class CellPanel extends JPanel implements CellBehaviour {
 
-    private boolean isAliveState;
+    private State state;
     
     public CellPanel() {
-        this.isAliveState = false;
+        this.state = State.DEAD;
     }
-    
-    public CellPanel(boolean isAliveState) {
-        this.isAliveState = isAliveState;
-    }
-    
+
     @Override
     public boolean isAlive() {
-        return this.isAliveState;
+        return this.state == State.ALIVE;
     }
 
     @Override
     public void kill() {
-        this.isAliveState = false;
+        this.state = State.DEAD;
+        setBackground(Color.DARK_GRAY);
     }
 
     @Override
     public void revive() {
-        this.isAliveState = true;
+        this.state = State.ALIVE;
+        setBackground(Color.CYAN);
     }
 }
