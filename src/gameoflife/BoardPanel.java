@@ -39,7 +39,7 @@ public class BoardPanel extends JPanel{
             }
         }
 
-        setBackground(Color.GRAY);
+        setBackground(Color.MAGENTA);
         setVisible(true);
     }
 
