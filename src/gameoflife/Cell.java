@@ -9,10 +9,13 @@ package gameoflife;
  *
  * @author Hp
  */
-public class Cell {
+public class Cell extends Point{
     private State state;
     private int neighbor;
-
+    
+    public Cell(int x, int y){
+        super(x,y);
+    }
     /**
      * @return the state
      */
@@ -26,11 +29,19 @@ public class Cell {
     public int getNeighbor() {
         return neighbor;
     }
-
-    /**
-     * @param neighbor the neighbor to set
-     */
-    public void setNeighbor(int neighbor) {
-        this.neighbor = neighbor;
+    public void subtractNeighbor(){
+        neighbor = neighbor - 1;
+    }
+    public void addNeigbor(){
+        neighbor = neighbor + 1;
+    }
+    public boolean isAlive(){
+        return state==State.ALIVE;
+    }
+    public void kill(){
+        state = State.DEAD;
+    }
+    public void revive(){
+        state = State.ALIVE;
     }
 }
