@@ -12,7 +12,7 @@ import java.util.ArrayList;
  */
 public class Board {
     
-    private Cell[] cells;
+//    private Cell[] cells;
     
     
     public Board() {
@@ -35,7 +35,7 @@ public class Board {
         
     }
     
-    public Cell getCell() {
-        return null;
-    }
+//    public Cell getCell() {
+//        return null;
+//    }
 }
