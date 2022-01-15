@@ -15,6 +15,8 @@ public class Cell extends Point{
     
     public Cell(int x, int y){
         super(x,y);
+        state = State.DEAD;
+        neighbor = 0;
     }
     /**
      * @return the state
