@@ -18,32 +18,37 @@ public class Cell extends Point implements CellBehaviour {
         state = State.DEAD;
         neighbor = 0;
     }
-    /**
-     * @return the state
-     */
+
     public State getState() {
         return state;
     }
 
-    /**
-     * @return the neighbor
-     */
     public int getNeighbor() {
         return neighbor;
     }
+
     public void subtractNeighbor(){
         neighbor = neighbor - 1;
     }
-    public void addNeigbor(){
+
+    public void addNeighbor(){
         neighbor = neighbor + 1;
     }
+
     public boolean isAlive(){
-        return state==State.ALIVE;
+        return state == State.ALIVE;
     }
+
     public void kill(){
         state = State.DEAD;
     }
+
     public void revive(){
         state = State.ALIVE;
+    }
+
+    public boolean isNextAlive() {
+        return (!isAlive() && getNeighbor() == 3)
+                || (isAlive() && getNeighbor() >= 2 && getNeighbor() <= 3);
     }
 }

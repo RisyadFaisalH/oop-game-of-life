@@ -15,26 +15,24 @@ import java.util.Arrays;
 public class Pattern {
     
     public static ArrayList<Point> createPattern(int x, int y, PatternStore pattern){
-        if(pattern == PatternStore.BEACON){
+        if (pattern == PatternStore.BEACON){
             return new ArrayList<>(
                     Arrays.asList(
-                            new Point(x, y),
-                            new Point(1 + x, y),
-                            new Point(x, 1 + y),
-                            new Point(x + 2, y + 3),
-                            new Point(x + 3, y + 3),
-                            new Point(x + 3, y + 2)
-                    )
-            );
-        }else if (pattern == PatternStore.BLINKER){
+                        new Point(x, y),
+                        new Point(1 + x, y),
+                        new Point(x, 1 + y),
+                        new Point(x + 2, y + 3),
+                        new Point(x + 3, y + 3),
+                        new Point(x + 3, y + 2)
+                    ));
+        } else if (pattern == PatternStore.BLINKER){
             return new ArrayList<>(
                     Arrays.asList(
                             new Point(x, y),
                             new Point(x + 1, y),
                             new Point(x + 2, y)
-                    )
-            );
-        }else{
+                    ));
+        } else {
             return new ArrayList<>(
                     Arrays.asList(
                             new Point(x + 2, y),
@@ -42,8 +40,7 @@ public class Pattern {
                             new Point(x + 2, y + 2),
                             new Point(x + 1, y + 2),
                             new Point(x, y + 1)
-                    )
-            );
+                    ));
         }
     }
 }

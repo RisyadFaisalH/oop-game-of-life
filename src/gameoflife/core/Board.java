@@ -12,7 +12,7 @@ import java.util.ArrayList;
  */
 public class Board {
     
-    private Cell[][] cells;
+    private final Cell[][] cells;
 
     private final Point[] moves = {
             new Point(0, 1),
@@ -63,7 +63,7 @@ public class Board {
         for (Point move: moves) {
             int changedX = (((x + move.getX()) + this.rows) % this.rows);
             int changedY = (((y + move.getY()) + this.cols) % this.cols);
-            cells[changedX][changedY].addNeigbor();
+            cells[changedX][changedY].addNeighbor();
         }
     }
     

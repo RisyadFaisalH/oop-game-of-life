@@ -26,7 +26,7 @@ public class Game {
 
         for (int i = 0; i < board.getRows(); i++) {
             for (int j = 0; j < board.getCols(); j++) {
-                if (rules(board.getCell(i, j))) {
+                if (board.getCell(i, j).isNextAlive()) {
                     nextBoard.populate(i, j);
                 } else {
                     nextBoard.unpopulate(i, j);
@@ -41,14 +41,5 @@ public class Game {
         board = nextBoard;
 
         return changedCell;
-    }
-    
-    public boolean rules(Cell cell) {
-        return (!cell.isAlive() && cell.getNeighbor() == 3)
-                || (cell.isAlive() && cell.getNeighbor() >= 2 && cell.getNeighbor() <= 3);
-    }
-
-    public Board getBoard() {
-        return board;
     }
 }
