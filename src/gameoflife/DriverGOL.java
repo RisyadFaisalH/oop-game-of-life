@@ -5,12 +5,13 @@
  */
 package gameoflife;
 
-/**
- *
- * @author Hp
- */
+import javax.swing.*;
+
 public class DriverGOL {
     public static void main(String[] args){
-        System.out.println("hello world");
+        BoardPanel boardPanel = new BoardPanel(40,40);
+        Board board = new Board(40,40, boardPanel.getAliveCells());
+        Game game = new Game(board);
+        SwingUtilities.invokeLater(new App(game, boardPanel));
     }
 }
