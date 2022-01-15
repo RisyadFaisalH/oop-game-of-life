@@ -24,8 +24,8 @@ public class App extends JFrame implements Runnable {
     private final ScheduledExecutorService executorService = Executors.newSingleThreadScheduledExecutor();
     JLabel generationLabel;
 
-    private final int rows = 60;
-    private final int cols = 60;
+    private final int rows = 40;
+    private final int cols = 40;
     private int numGeneration = 0;
 
     BoardPanel boardPanel;
@@ -33,8 +33,8 @@ public class App extends JFrame implements Runnable {
 
     @Override
     public void run(){
-        int width = 890;
-        int height = 960;
+        int width = 750;
+        int height = 800;
 
         JFrame frame = new JFrame("Game of Life");
         frame.setSize(new Dimension(width, height));
