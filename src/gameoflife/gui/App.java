@@ -17,10 +17,8 @@ import java.util.concurrent.*;
 
 public class App extends JFrame implements Runnable {
 
-    private JFrame frame;
     private JButton playButton;
     private JButton resetButton;
-    private JPanel headerPanel;
     private Future<?> future;
     private final ScheduledExecutorService executorService = Executors.newSingleThreadScheduledExecutor();
 
@@ -28,23 +26,19 @@ public class App extends JFrame implements Runnable {
     private final int cols = 40;
 
     BoardPanel boardPanel;
-
     Game game;
 
-    public App() {
-
-    }
-    
+    @Override
     public void run(){
         int width = 800;
         int height = 800;
 
-        frame = new JFrame("Game of Life");
+        JFrame frame = new JFrame("Game of Life");
         frame.getContentPane().setBackground(Color.MAGENTA);
         frame.setSize(new Dimension(width, height));
         frame.setResizable(false);
 
-        headerPanel = new JPanel();
+        JPanel headerPanel = new JPanel();
         headerPanel.setLayout(new GridLayout(1, 2, 1, 1));
 
         playButton = new JButton("Play");
