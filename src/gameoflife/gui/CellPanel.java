@@ -38,6 +38,6 @@ public class CellPanel extends JPanel implements CellBehaviour {
     @Override
     public void revive() {
         this.state = State.ALIVE;
-        setBackground(new Color(56, 64, 95));
+        setBackground(new Color(29, 35, 53));
     }
 }

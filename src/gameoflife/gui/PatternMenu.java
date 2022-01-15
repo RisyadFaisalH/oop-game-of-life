@@ -9,7 +9,7 @@ import java.awt.*;
 import java.util.ArrayList;
 
 public class PatternMenu extends JPopupMenu {
-    JMenuItem itemGlider, itemBlinker, itemBeacon;
+    JMenuItem itemGlider, itemBlinker, itemBeacon, itemGliderGun;
     CellPanel[][] cellPanels;
     int x, y;
     int rows, cols;
@@ -32,13 +32,17 @@ public class PatternMenu extends JPopupMenu {
         itemBeacon = new JMenuItem("Beacon");
         addEventListener(itemBeacon, PatternStore.BEACON);
         add(itemBeacon);
+
+        itemGliderGun = new JMenuItem("Glider Gun");
+        addEventListener(itemGliderGun, PatternStore.GLIDER_GUN);
+        add(itemGliderGun);
     }
 
     private void addEventListener(JMenuItem item, PatternStore pattern) {
         item.addActionListener(e -> {
-            ArrayList<Point> points = Pattern.createPattern(x, y, pattern);
+            ArrayList<Point> points = Pattern.createPattern(y, x, pattern);
             for (Point point: points) {
-                cellPanels[(point.getX() + rows) % rows][(point.getY() + cols) % cols].revive();
+                cellPanels[(point.getY() + rows) % rows][ (point.getX() + cols) % cols].revive();
             }
         });
     }

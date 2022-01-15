@@ -9,5 +9,5 @@ package gameoflife.core.enums;/*
  * @author Faisal
  */
 public enum PatternStore {
-    GLIDER, BEACON, BLINKER
+    GLIDER, BEACON, BLINKER, GLIDER_GUN
 }
