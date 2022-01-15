@@ -34,6 +34,7 @@ public class BoardPanel extends JPanel{
         for(int i = 0; i < rows; i++) {
             for(int j = 0; j < cols; j++) {
                 cellPanel[i][j] = new CellPanel();
+                addEventListener(cellPanel[i][j]);
                 add(cellPanel[i][j]);
             }
         }
