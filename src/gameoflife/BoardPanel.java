@@ -70,7 +70,13 @@ public class BoardPanel extends JPanel{
         panel.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseReleased(MouseEvent e) {
-                super.mouseReleased(e);
+                if(isEnabled()) {
+                    if (panel.isAlive()) {
+                        panel.kill();
+                    } else {
+                        panel.revive();
+                    }
+                }
             }
         });
     }
