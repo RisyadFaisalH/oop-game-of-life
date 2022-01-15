@@ -5,6 +5,8 @@
  */
 package gameoflife.core;
 
+import gameoflife.core.enums.State;
+
 /**
  *
  * @author Hp

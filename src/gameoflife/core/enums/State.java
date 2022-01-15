@@ -1,13 +1,14 @@
-package gameoflife.core;/*
+/*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
+package gameoflife.core.enums;
 
 /**
  *
- * @author Faisal
+ * @author Hp
  */
-public enum PatternStore {
-    GLIDER, BEACON, BLINKER
+public enum State {
+    ALIVE,DEAD
 }

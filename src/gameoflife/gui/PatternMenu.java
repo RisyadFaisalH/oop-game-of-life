@@ -1,7 +1,7 @@
 package gameoflife.gui;
 
 import gameoflife.core.Pattern;
-import gameoflife.core.PatternStore;
+import gameoflife.core.enums.PatternStore;
 import gameoflife.core.Point;
 
 import javax.swing.*;
