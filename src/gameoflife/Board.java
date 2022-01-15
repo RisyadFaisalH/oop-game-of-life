@@ -43,6 +43,13 @@ public class Board {
     public Board(int x, int y, ArrayList<Point> aliveCells) {
         this.rows = x;
         this.cols = y;
+        this.cells = new Cell[x][y];
+
+        for (int i = 0; i < x; i++) {
+            for (int j = 0; j < y; j++) {
+                this.cells[i][j] = new Cell(i, j);
+            }
+        }
 
         for (Point aliveCell: aliveCells) {
             populate(aliveCell.getX(), aliveCell.getY());
@@ -58,7 +65,9 @@ public class Board {
 
         cells[x][y].revive();
         for (Point move: moves) {
-            cells[(move.getX() + this.rows) % this.rows][(move.getY() + this.cols) % this.cols].addNeigbor();
+            int changedX = (((x + move.getX()) + this.rows) % this.rows);
+            int changedY = (((y + move.getY()) + this.cols) % this.cols);
+            cells[changedX][changedY].addNeigbor();
         }
     }
     
@@ -67,7 +76,9 @@ public class Board {
 
         cells[x][y].kill();
         for (Point move: moves) {
-            cells[(move.getX() + this.rows) % this.rows][(move.getY() + this.cols) % this.cols].subtractNeighbor();
+            int changedX = (((x + move.getX()) + this.rows) % this.rows);
+            int changedY = (((y + move.getY()) + this.cols) % this.cols);
+            cells[changedX][changedY].subtractNeighbor();
         }
     }
     

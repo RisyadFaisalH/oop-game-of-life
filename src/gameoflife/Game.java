@@ -41,7 +41,7 @@ public class Game {
     }
     
     public boolean rules(Cell cell) {
-        return (cell.getNeighbor() == 3  && !cell.isAlive())
+        return (!cell.isAlive() && cell.getNeighbor() == 3)
                 || (cell.isAlive() && cell.getNeighbor() >= 2 && cell.getNeighbor() <= 3);
     }
 

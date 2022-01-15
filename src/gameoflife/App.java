@@ -16,20 +16,23 @@ public class App extends JFrame implements Runnable {
     private JButton playButton;
     private Future<?> future;
     private final ScheduledExecutorService executorService = Executors.newSingleThreadScheduledExecutor();
-    int width;
-    int height;
+
+    final int width = 800;
+    final int height = 800;
+
+    final int rows = 40;
+    final int cols = 40;
+
     BoardPanel boardPanel;
     Game game;
 
-    public App(Game game,  BoardPanel boardPanel) {
-        this.game = game;
-        this.boardPanel = boardPanel;
+    public App() {
     }
     
     public void run(){
         frame = new JFrame("Game of Life");
         frame.getContentPane().setBackground(Color.MAGENTA);
-        frame.setSize(new Dimension(800, 800));
+        frame.setSize(new Dimension(width, height));
         frame.setResizable(false);
         
         playButton = new JButton("Play");
@@ -42,6 +45,7 @@ public class App extends JFrame implements Runnable {
         });
         
         frame.add(playButton, BorderLayout.PAGE_START);
+        boardPanel = new BoardPanel(rows, cols);
         frame.add(boardPanel, BorderLayout.CENTER);
         
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -52,11 +56,10 @@ public class App extends JFrame implements Runnable {
     private void play() {
         playButton.setText("Pause");
         boardPanel.setEnabled(false);
-    
+        Game game = new Game(new Board(rows, cols, boardPanel.getAliveCells()));
         future = executorService.scheduleAtFixedRate(() -> {
-            ArrayList<Cell> changedCells = this.game.evolve();
+            ArrayList<Cell> changedCells = game.evolve();
             boardPanel.repaintGrid(changedCells);
-        
         }, 1, 1, TimeUnit.SECONDS);
     }
     

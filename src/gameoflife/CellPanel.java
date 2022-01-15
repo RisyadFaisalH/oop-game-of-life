@@ -29,7 +29,7 @@ public class CellPanel extends JPanel implements CellBehaviour {
     @Override
     public void kill() {
         this.state = State.DEAD;
-        setBackground(Color.DARK_GRAY);
+        setBackground(new Color(229, 229, 229));
     }
 
     @Override
