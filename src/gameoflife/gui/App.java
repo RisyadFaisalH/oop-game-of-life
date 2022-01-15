@@ -10,6 +10,7 @@ import gameoflife.core.Cell;
 import gameoflife.core.Game;
 
 import javax.swing.*;
+import javax.swing.border.EmptyBorder;
 import java.awt.*;
 import java.util.ArrayList;
 import java.util.concurrent.*;
@@ -21,25 +22,32 @@ public class App extends JFrame implements Runnable {
     private JButton resetButton;
     private Future<?> future;
     private final ScheduledExecutorService executorService = Executors.newSingleThreadScheduledExecutor();
+    JLabel generationLabel;
 
     private final int rows = 40;
     private final int cols = 40;
+    private int numGeneration = 0;
 
     BoardPanel boardPanel;
     Game game;
 
     @Override
     public void run(){
-        int width = 800;
-        int height = 800;
+        int width = 750;
+        int height = 860;
 
         JFrame frame = new JFrame("Game of Life");
-        frame.getContentPane().setBackground(Color.MAGENTA);
         frame.setSize(new Dimension(width, height));
         frame.setResizable(false);
 
         JPanel headerPanel = new JPanel();
-        headerPanel.setLayout(new GridLayout(1, 2, 1, 1));
+        headerPanel.setBackground(new Color(56, 64, 95));
+        headerPanel.setBorder(new EmptyBorder(9, 6, 6, 6));
+        headerPanel.setLayout(new GridLayout(1, 2, 5, 1));
+
+        generationLabel = new JLabel("Generation: 0");
+        generationLabel.setBorder(new EmptyBorder(4, 6, 4, 6));
+        frame.add(generationLabel, BorderLayout.PAGE_END);
 
         playButton = new JButton("Play");
         playButton.addActionListener(e ->{
@@ -74,6 +82,8 @@ public class App extends JFrame implements Runnable {
         future = executorService.scheduleAtFixedRate(() -> {
             ArrayList<Cell> changedCells = game.evolve();
             boardPanel.repaintGrid(changedCells);
+            numGeneration += 1;
+            generationLabel.setText(String.format("Generation: %d", numGeneration));
         }, 0, 300, TimeUnit.MILLISECONDS);
     }
 
@@ -86,5 +96,7 @@ public class App extends JFrame implements Runnable {
 
     private void reset() {
         boardPanel.resetGrid();
+        numGeneration = 0;
+        generationLabel.setText(String.format("Generation: %d", 0));
     }
 }

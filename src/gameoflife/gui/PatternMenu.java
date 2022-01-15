@@ -5,6 +5,7 @@ import gameoflife.core.enums.PatternStore;
 import gameoflife.core.Point;
 
 import javax.swing.*;
+import java.awt.*;
 import java.util.ArrayList;
 
 public class PatternMenu extends JPopupMenu {
