@@ -14,7 +14,7 @@ import java.util.Arrays;
  */
 public class Pattern {
     
-    public ArrayList<Point> createPattern(int x, int y, PatternStore pattern){
+    public static ArrayList<Point> createPattern(int x, int y, PatternStore pattern){
         if(pattern == PatternStore.BEACON){
             return new ArrayList<>(
                     Arrays.asList(

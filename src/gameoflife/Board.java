@@ -51,13 +51,9 @@ public class Board {
             }
         }
 
-        for (Point aliveCell: aliveCells) {
+        for (Point aliveCell : aliveCells) {
             populate(aliveCell.getX(), aliveCell.getY());
         }
-    }
-    
-    public void info() {
-
     }
     
     public void populate(int x, int y) {

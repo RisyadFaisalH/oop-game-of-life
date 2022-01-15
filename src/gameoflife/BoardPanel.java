@@ -34,7 +34,7 @@ public class BoardPanel extends JPanel{
         for(int i = 0; i < rows; i++) {
             for(int j = 0; j < cols; j++) {
                 cellPanel[i][j] = new CellPanel();
-                addEventListener(cellPanel[i][j]);
+                addEventListener(i, j);
                 add(cellPanel[i][j]);
             }
         }
@@ -54,6 +54,14 @@ public class BoardPanel extends JPanel{
         repaint();
     }
 
+    public void resetGrid() {
+        for(int i = 0; i < rows; i++) {
+            for(int j = 0; j < cols; j++) {
+                cellPanel[i][j].kill();
+            }
+        }
+    }
+
     public ArrayList<Point> getAliveCells() {
         ArrayList<Point> aliveCells = new ArrayList<>();
         for (int i = 0; i < this.rows; i++) {
@@ -67,15 +75,24 @@ public class BoardPanel extends JPanel{
         return aliveCells;
     }
 
-    private void addEventListener(CellPanel panel){
-        panel.addMouseListener(new MouseAdapter() {
+    private void handleSingleClick(CellPanel panel) {
+        if (panel.isAlive()) {
+            panel.kill();
+        } else {
+            panel.revive();
+        }
+    }
+
+    private void addEventListener(int x, int y){
+        cellPanel[x][y].addMouseListener(new MouseAdapter() {
             @Override
             public void mouseReleased(MouseEvent e) {
                 if(isEnabled()) {
-                    if (panel.isAlive()) {
-                        panel.kill();
+                    if (e.isPopupTrigger()) {
+                        PatternMenu menu = new PatternMenu(cellPanel, x, y);
+                        menu.show(e.getComponent(), e.getX(), e.getY());
                     } else {
-                        panel.revive();
+                        handleSingleClick(cellPanel[x][y]);
                     }
                 }
             }
